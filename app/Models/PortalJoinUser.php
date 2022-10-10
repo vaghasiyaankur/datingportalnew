@@ -22,6 +22,8 @@ class PortalJoinUser extends Model
         'profile_disable',
     ];
 
+    public $timestamps = true;
+    
     protected $appends = ['userName','regionName','userNameColor','humanTime','commonMatchwords'];
     
     public function user(){
@@ -66,16 +68,23 @@ class PortalJoinUser extends Model
     public function getHumanTimeAttribute()
     {
        if($this->attributes['dob'] != null){
-            if($this->attributes['sex'] == Sex::getValue('Par')){
-            return \Carbon\Carbon::now()
-                ->diffInYears(
-                    \Carbon\Carbon::parse(CoupleInfo::where('portalJoinUser_id',$this->attributes['id'])->first()->dob))
-                . " og " . \Carbon\Carbon::now()
-                ->diffInYears(\Carbon\Carbon::parse(CoupleInfo::where('portalJoinUser_id',$this->attributes['id'])->orderBy('id', 'DESC')->first()->dob));
-            }else {
+            if(CoupleInfo::where('portalJoinUser_id',$this->attributes['id'])->first()){
+                if($this->attributes['sex'] == Sex::getValue('Par')){
+                    return \Carbon\Carbon::now()
+                        ->diffInYears(
+                            \Carbon\Carbon::parse(CoupleInfo::where('portalJoinUser_id',$this->attributes['id'])->first()->dob))
+                        . " og " . \Carbon\Carbon::now()
+                        ->diffInYears(\Carbon\Carbon::parse(CoupleInfo::where('portalJoinUser_id',$this->attributes['id'])->orderBy('id', 'DESC')->first()->dob));
+                    }else {
+                        return \Carbon\Carbon::now()
+                        ->diffInYears(\Carbon\Carbon::parse($this->attributes['dob']));
+                    }
+            }else{
                 return \Carbon\Carbon::now()
                 ->diffInYears(\Carbon\Carbon::parse($this->attributes['dob']));
+
             }
+            
         }
     }
 

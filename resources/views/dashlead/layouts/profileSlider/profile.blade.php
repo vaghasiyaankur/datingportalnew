@@ -6,17 +6,25 @@
                 <div class="card-body main-profile-overview widget-user-image text-center">
                         {{-- <div style="overflow: hidden;justify-content:space-around;"> --}}
                             <div style="max-width: 27%;max-height: 27%;display: inline-block;">
+                                @if($item->portalInfo->coupleMale())
                                 @if(File::exists($item->portalInfo->coupleMale()->profilePicture)) 
                                     <img src="{{asset($item->portalInfo->coupleMale()->profilePicture)}}" style="border:2px solid #DBD4D3; border-radius:50%; padding: 2px; text-align: center; margin:5px;">
                                 @else
                                     <img style="border:2px solid #DBD4D3; border-radius:50%; padding: 2px; text-align: center; margin:5px;" src="{{ asset('dashlead/img/default/404-dp.png') }}" class="rounded-circle">
-                                @endif
-                            </div>
+                                @endif    
+                                @else
+                                    <img style="border:2px solid #DBD4D3; border-radius:50%; padding: 2px; text-align: center; margin:5px;" src="{{ asset('dashlead/img/default/404-dp.png') }}" class="rounded-circle">
+                                    @endif
+                                </div>
                             <div style="max-width: 27%;max-height: 27%;display: inline-block;">
+                                @if($item->portalInfo->coupleFemale())
                                 @if(File::exists($item->portalInfo->coupleFemale()->profilePicture)) 
                                     <img src="{{asset($item->portalInfo->coupleFemale()->profilePicture)}}" style="border:2px solid #DBD4D3; border-radius:50%; padding: 2px; text-align: center; margin:5px;">
                                 @else
                                     <img style="border:2px solid #DBD4D3; border-radius:50%; padding: 2px; text-align: center; margin:5px;" src="{{ asset('dashlead/img/default/404-dp.png') }}" class="rounded-circle">
+                                @endif
+                                @else
+                                <img style="border:2px solid #DBD4D3; border-radius:50%; padding: 2px; text-align: center; margin:5px;" src="{{ asset('dashlead/img/default/404-dp.png') }}" class="rounded-circle">
                                 @endif
                             </div>
                         {{-- </div> --}}

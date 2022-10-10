@@ -15,7 +15,7 @@
             <div class="container-fluid">
 
                 <!-- Page Header -->
-					<div class="page-header">
+					<div class="page-header d-flex justify-content-between">
 						<div>
 							<h2 class="main-content-title tx-24 mg-b-5">Users</h2>
 							<ol class="breadcrumb">
@@ -23,6 +23,9 @@
 								<li class="breadcrumb-item active" aria-current="page">Users</li>
 							</ol>
 						</div>
+                        <div>
+                            <button type="button" id="new-user" class="adddata btn btn-sm btn-success">+ Add Admin</button>
+                        </div>
 						<!-- <div class="btn btn-list">
 							<a class="btn ripple btn-primary" href="#"><i class="fe fe-plus"></i> Add User</a>
 						</div> -->
@@ -90,6 +93,56 @@
 						</div>
 					</div>
 				<!-- User Show Model -->
+
+                <!-- User Edit Model -->
+					<div class="modal" id="userAddModal">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content modal-content-demo shadow">
+								<div class="modal-header">
+									<h6 class="modal-title" style="text-transform: uppercase;">Add User</h6><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+								</div>
+                            <form method="POST" action="{{ route('admin.user.add') }}">
+                                @csrf
+								<div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <label for="name">Name  <span style="color:red">*</span></label>
+                                                <div id="addname"><input type="text" class="form-control" name="name" value="" required></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <label for="name">Email  <span style="color:red">*</span></label>
+                                                <div id="addemail"><input type="text" class="form-control" name="email" value="" required></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <label for="name">Password  <span style="color:green">(if any)</span></label>
+                                                <input type="password" class="form-control" name="password"> 
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <label for="name">Confirm Password  <span style="color:green">(if any)</span></label>
+                                                <input type="password" class="form-control" name="confirm-password"> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+								<div class="modal-footer">
+                                <button class="btn ripple btn-success" type="submit" style="font-weight: bold;text-transform: uppercase;">{{ __('Add') }}</button>
+                                    <button class="btn ripple btn-danger" data-dismiss="modal" type="button" style="font-weight: bold;text-transform: uppercase;">Close</button>
+								</div>
+                            </form>
+
+							</div>
+						</div>
+					</div>
+				<!-- User Edit Model -->
+
 
                 <!-- User Edit Model -->
 					<div class="modal" id="userEditModal">
@@ -179,6 +232,19 @@
                             })
                         });
                     // User Data Model
+
+                    // Add User Data Model
+                    $(document).on('click', '.adddata', function(){
+                            // $.ajax({
+                            // url:"userShowModal/"+id+"",
+                            // dataType:"json",
+                            // success:function(html){
+                            //     $('#data').html(html.data);
+                                $('#userAddModal').modal('show');
+                            // }
+                            // })
+                        });
+                    // Add User Data Model
 
                     // User Data Model
                         $(document).on('click', '.editdata', function(){

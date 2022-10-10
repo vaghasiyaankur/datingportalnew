@@ -57,7 +57,10 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-
+        if(auth()->user()->super_user){
+            $updateplan = PortalJoinUser::where('user_id', auth()->id())->update(['membership_ends_at' => Carbon::now()->addYears(5)]);
+        }else{
+        }
         if(auth()->user()->isDeactivate()){
             return redirect('profile_security')->with('error','please active your account to access');
         }

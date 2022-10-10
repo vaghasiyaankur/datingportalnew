@@ -53,6 +53,8 @@
                                                             <td style="text-align:center;">{{date('d-m-Y, h:i A', strtotime($status->created_at))}}</td>
                                                             <td style="text-align:center;">
                                                                 <a class="btn btn-sm btn-success" data-toggle="modal" data-target="#viewDataModal-{{$status->id}}" href="#"><i class="fe fe-eye"></i></a>
+                                                                <button class="btn btn-sm btn-danger" type="button" onclick="destroy({{ $status->id }})"><i class="fe fe-trash"></i></button>
+                                                                <form id="delete-form-{{$status->id}}" action="{{ route('admin.status.destroy',$status->id) }}" method="POST" style="display: none;">@csrf</form>
                                                                 <!-- View Data Model -->
                                                                     <div class="modal" id="viewDataModal-{{$status->id}}">
                                                                         <div class="modal-dialog" role="document">
@@ -113,6 +115,34 @@
         <script src="{{ asset('cbs/backend/plugins/datatable/fileexport/buttons.html5.min.js') }}"></script>
         <script src="{{ asset('cbs/backend/plugins/datatable/fileexport/buttons.print.min.js') }}"></script>
         <script src="{{ asset('cbs/backend/plugins/datatable/fileexport/buttons.colVis.min.js') }}"></script>
+        
+        <script type="text/javascript">
+            function destroy(id) {
+
+                swal({
+                title: "Are you sure ?",
+                text: "You will not be able to recover this report !",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "Yes, Delete It !",
+                cancelButtonText: "No, Cancel Please !",
+                closeOnConfirm: false,
+                closeOnCancel: false
+                },
+                function(isConfirm) {
+                if (isConfirm) {
+                    event.preventDefault();
+                    document.getElementById('delete-form-'+id).submit();
+                // swal("Deleted!", "Your imaginary file has been deleted.", "success");
+                } else {
+                swal("Cancelled", "This Report file is safe :)", "error");
+                }
+                });
+
+            }
+        </script>
+    <!-- Delete Sweet Alert -->
 
     @endpush
 <!-- Developed By CBS -->

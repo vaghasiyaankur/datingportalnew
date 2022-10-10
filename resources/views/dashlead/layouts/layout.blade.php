@@ -459,6 +459,26 @@
 								});
 							@endforeach
 						@endif
+
+						@if(Session::get('error'))
+						@php
+						$session = Session::get("error")
+						@endphp
+							toastr.error(' {{ $session }}','Error',{
+								closeButton:true,
+								progressBar:true,
+							});
+						@endif
+
+						@if(Session::get('success'))
+						@php
+						$session = Session::get("success")
+						@endphp
+							toastr.success(' {{ $session }}','Success',{
+								closeButton:true,
+								progressBar:true,
+							});
+						@endif
 					</script>
 					<script>
 						$('#profile_edit_model .save').click(function (e) {

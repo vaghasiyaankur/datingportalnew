@@ -36,7 +36,7 @@ else
 
         Route::Resource('/signup', 'frontEnd\SignupController');
         //Route::get('signupplans', 'frontEnd\SignupController@signupplans')->name('signupplans.show');
-		Route::get('signupplans/{id}', 'frontend\signupcontroller@signupplans')->name('signupplans.show');
+		Route::get('signupplans/{id}', 'frontEnd\SignupController@signupplans')->name('signupplans.show');
         Route::get('membership/{plan}', 'frontEnd\SignupController@showplan')->name('membership.show');
         Route::post('newsubscription', 'frontEnd\SignupController@newMemberCreate')->name('newsubscription.create');
     // Signup
@@ -76,6 +76,7 @@ else
             Route::post('statuses/{id}/report', 'frontEnd\StatusController@report')->name('status.report');
             Route::post('profileDescription', 'frontEnd\ProfileController@profileDescription');
             Route::post('profile_report', 'frontEnd\ProfileController@profileReport')->name('profile.report');
+            Route::post('promotion/{id}/report', 'frontEnd\ProfileController@promotionReport')->name('promotion.report');
             
             Route::get('visited_all', 'frontEnd\ProfileController@visitedAll')->name('visited.all');
             Route::get('favorite_all', 'frontEnd\ProfileController@favoriteAll')->name('favorite.all');
@@ -191,6 +192,7 @@ else
                 Route::get('chat-rooms/{id}', 'frontEnd\ChatRoomController@chat')->name('chatroom.chat');
                 Route::get('chat-rooms/messages/{id}', 'frontEnd\ChatRoomController@fetchAllMessages')->name('chatroom.fetchAllMessages');
                 Route::post('chat-rooms/messages', 'frontEnd\ChatRoomController@sendMessage')->name('chatroom.sendMessage');
+                Route::post('chat-rooms/updateOnlineUser', 'frontEnd\ChatRoomController@updateOnlineUser')->name('chatroom.updateOnlineUser');
 
                 // Route::Resource('chat-rooms', 'frontEnd\ChatRoomController');
                 Route::Resource('chatRoomjoin', 'frontEnd\ChatRoomJoinUserController');
@@ -303,7 +305,23 @@ Route::post('/image/process', 'frontEnd\ImageController@imageprocess')->name('im
         Route::get('userShowModal/{id}', 'UserController@userShowModal')->name('admin.user.show');
         Route::get('userEditModal/{id}', 'UserController@userEditModal')->name('admin.user.edit');
         Route::post('user/update', 'UserController@update')->name('admin.user.update');
+        Route::post('user/add', 'UserController@add')->name('admin.user.add');
         Route::post('user/deactive/{id}', 'UserController@deactive')->name('admin.user.deactive');
+
+        // Super Users
+        Route::resource('superusers', 'MemberController');
+        Route::get('superuserShowModal/{id}', 'MemberController@superuserShowModal')->name('admin.superuser.show');
+        Route::get('superuserEditModal/{id}', 'MemberController@superuserEditModal')->name('admin.superuser.edit');
+        Route::post('superuser/update', 'MemberController@update')->name('admin.superuser.update');
+        Route::post('superuser/add', 'MemberController@addsuperuser')->name('admin.superuser.add');
+        Route::post('superuser/deactive/{id}', 'MemberController@deactive')->name('admin.superuser.deactive');
+
+        // Members
+        Route::resource('members', 'MemberController');
+        Route::get('memberShowModal/{id}', 'MemberController@memberShowModal')->name('admin.member.show');
+        Route::get('memberEditModal/{id}', 'MemberController@memberEditModal')->name('admin.member.edit');
+        Route::post('member/update', 'MemberController@update')->name('admin.member.update');
+        Route::post('member/destroy/{id}', 'MemberController@destroy')->name('admin.member.destroy');
 
         // region
         Route::get('region', 'Backend\RegionController@index')->name('region.index');
@@ -337,6 +355,11 @@ Route::post('/image/process', 'frontEnd\ImageController@imageprocess')->name('im
 
         // Reported status
         Route::get('report', 'Backend\StatusController@reportedStatusesList')->name('reported-status.index');
+        Route::post('status/destroy/{id}', 'Backend\StatusController@statusdestroy')->name('admin.status.destroy');
+
+        // Reported Promotion
+        Route::get('promotion', 'Backend\StatusController@reportedPromotionList')->name('reported-promotion.index');
+        Route::post('promotion/destroy/{id}', 'Backend\StatusController@promotiondestroy')->name('admin.promotion.destroy');
 
     });
 // Admin Panel

@@ -137,22 +137,22 @@
                                             <div class="card-body">
                                                 <div class="card overflow-hidden" style="background:#e3ecfb;">
                                                     <div class="text-center card-pricing pricing1">
-                                                        <div class="p-2 text-white bg-primary fs-20" style="font-weight: bold;">{{ Auth::user()->portalInfo->memberships->name }}</div>
+                                                        <div class="p-2 text-white bg-primary fs-20" style="font-weight: bold;">{{ @Auth::user()->portalInfo->memberships->name }}</div>
                                                         <div class="p-3 font-weight-normal mb-0">
                                                             <h6 class="text-center mb-0">kr.
-                                                                    <span class="h4">{{ number_format(Auth::user()->portalInfo->memberships->cost, 2) }}</span>
+                                                                    <span class="h4">{{ number_format(@Auth::user()->portalInfo->memberships->cost, 2) }}</span>
                                                                     <span class="h6 text-muted ml-2">/
-                                                                        @if (Auth::user()->portalInfo->memberships->name == "Gratis")
+                                                                        @if (@Auth::user()->portalInfo->memberships->name == "Gratis")
                                                                             Free
                                                                         @else
-                                                                            {{Auth::user()->portalInfo->memberships->duration}}
+                                                                            {{@Auth::user()->portalInfo->memberships->duration}}
                                                                         @endif
                                                                     </span>
                                                             </h6>
                                                         </div>
                                                         <div class="card-body text-center pt-0">
                                                             <ul class="list-unstyled mb-0">
-                                                                <li><i class="fe fe-star mr-2 text-success"></i>{{ Auth::user()->portalInfo->memberships->description }}</li>
+                                                                <li><i class="fe fe-star mr-2 text-success"></i>{{ @Auth::user()->portalInfo->memberships->description }}</li>
                                                             </ul>
                                                         </div>
                                                         <div class="card-footer text-center">
@@ -178,22 +178,22 @@
                                             <div class="card-body">
                                                 <div class="card overflow-hidden" style="background:#dcdfe6;">
                                                     <div class="text-center card-pricing pricing1">
-                                                        <div class="p-2 text-white bg-dark fs-20" style="font-weight: bold;">{{ Auth::user()->portalInfo->memberships->name }}</div>
+                                                        <div class="p-2 text-white bg-dark fs-20" style="font-weight: bold;">{{ @Auth::user()->portalInfo->memberships->name }}</div>
                                                         <div class="p-3 font-weight-normal mb-0">
                                                             <h6 class="text-center mb-0">kr.
-                                                                    <span class="price">{{ number_format(Auth::user()->portalInfo->memberships->cost, 2) }}</span>
+                                                                    <span class="price">{{ number_format(@Auth::user()->portalInfo->memberships->cost, 2) }}</span>
                                                                     <span class="h6 text-muted ml-2">/
-                                                                        @if (Auth::user()->portalInfo->memberships->name == "Gratis")
+                                                                        @if (@Auth::user()->portalInfo->memberships->name == "Gratis")
                                                                             Free
                                                                         @else
-                                                                            {{Auth::user()->portalInfo->memberships->duration}}
+                                                                            {{@Auth::user()->portalInfo->memberships->duration}}
                                                                         @endif
                                                                     </span>
                                                                 </h6>
                                                         </div>
                                                         <div class="card-body text-center pt-0">
                                                             <ul class="list-unstyled mb-0">
-                                                                <li><i class="fe fe-star mr-2 text-success"></i>{{ Auth::user()->portalInfo->memberships->description }}</li>
+                                                                <li><i class="fe fe-star mr-2 text-success"></i>{{ @Auth::user()->portalInfo->memberships->description }}</li>
                                                             </ul>
                                                         </div>
                                                         <div class="card-footer text-center">
@@ -219,22 +219,22 @@
                                             <div class="card-body">
                                                 <div class="card overflow-hidden" style="background:#dcdfe6;">
                                                     <div class="text-center card-pricing pricing1">
-                                                        <div class="p-2 text-white bg-dark fs-20" style="font-weight: bold;">{{ Auth::user()->portalInfo->memberships->name }}</div>
+                                                        <div class="p-2 text-white bg-dark fs-20" style="font-weight: bold;">{{ @Auth::user()->portalInfo->memberships->name }}</div>
                                                         <div class="p-3 font-weight-normal mb-0">
                                                             <h6 class="text-center mb-0">kr.
-                                                                    <span class="price">{{ number_format(Auth::user()->portalInfo->memberships->cost, 2) }}</span>
+                                                                    <span class="price">{{ number_format(@Auth::user()->portalInfo->memberships->cost, 2) }}</span>
                                                                     <span class="h6 text-muted ml-2">/
-                                                                        @if (Auth::user()->portalInfo->memberships->name == "Gratis")
+                                                                        @if (@Auth::user()->portalInfo->memberships->name == "Gratis")
                                                                             Free
                                                                         @else
-                                                                            {{Auth::user()->portalInfo->memberships->duration}}
+                                                                            {{@Auth::user()->portalInfo->memberships->duration}}
                                                                         @endif
                                                                     </span>
                                                                 </h6>
                                                         </div>
                                                         <div class="card-body text-center pt-0">
                                                             <ul class="list-unstyled mb-0">
-                                                                <li><i class="fe fe-star mr-2 text-success"></i>{{ Auth::user()->portalInfo->memberships->description }}</li>
+                                                                <li><i class="fe fe-star mr-2 text-success"></i>{{ @Auth::user()->portalInfo->memberships->description }}</li>
                                                             </ul>
                                                         </div>
                                                         <div class="card-footer text-center">

@@ -17,13 +17,19 @@
                 </li>
                 <li class="nav-label">Administration</li>
                 <li class="nav-item">
-                    <a class="nav-link {{ Request::is('admin/users') ? 'active' : '' }}" href="{{ route('users.index') }}"><i class="fa fa-users"></i><span class="sidemenu-label">User</span></a>
+                    <a class="nav-link {{ Request::is('admin/users') ? 'active' : '' }}" href="{{ route('users.index') }}"><i class="fa fa-users"></i><span class="sidemenu-label">Admin</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ Request::is('admin/members') ? 'active' : '' }}" href="{{ route('members.index') }}"><i class="fa fa-users"></i><span class="sidemenu-label">Member</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ Request::is('admin/announcement') ? 'active' : '' }}" href="{{ route('announcement.index') }}"><i class="fa fa-bullhorn"></i><span class="sidemenu-label">Announcement</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ Request::is('admin/reported-statuses') ? 'active' : '' }}" href="{{route('reported-status.index')}}"><i class="fa fa-flag"></i><span class="sidemenu-label">Reported Status</span></a>
+                    <a class="nav-link {{ Request::is('admin/report') ? 'active' : '' }}" href="{{route('reported-status.index')}}"><i class="fa fa-flag"></i><span class="sidemenu-label">Reported Status</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ Request::is('admin/promotion') ? 'active' : '' }}" href="{{route('reported-promotion.index')}}"><i class="fa fa-flag"></i><span class="sidemenu-label">Reported Promotion</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ Request::is('admin/settings') ? 'active' : '' }}" href="{{route('admin.settings')}}"><i class="fa fa-cog"></i><span class="sidemenu-label">Settings</span></a>

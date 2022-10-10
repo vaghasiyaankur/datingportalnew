@@ -16,6 +16,7 @@ use App\Models\UserReport;
 use Illuminate\Http\Request;
 use App\Models\PortalJoinUser;
 use App\Models\VisitedProfile;
+use App\Models\PromotionReport;
 use App\Models\UserPromotation;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
@@ -24,6 +25,7 @@ use App\Notifications\TemplateEmail;
 use Illuminate\Support\Facades\Auth;
 use App\Notifications\RepliedToThread;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\PromotionReportRequest;
 
 class ProfileController extends Controller
 {
@@ -612,6 +614,31 @@ class ProfileController extends Controller
             ->whereNotIn('id', auth()->user()->deactivateUserList())
             ->orderBy('created_at', 'DESC')->limit(30)->get();
         return view('frontEnd.latestAll',compact('latestList'));
+    }
+
+    /**
+     * Report the specified Promotion.
+     *
+     * @param $id
+     * @param PromotionReportRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function promotionReport($id, PromotionReportRequest $request)
+    {
+        $existingReport = PromotionReport::where('user_id', auth()->user()->id)
+            ->where('user_promotion_id', $id);
+
+        if ($existingReport->count() > 0) {
+            return redirect()->back()->with('error', 'You have already reported this status');
+        }
+
+        PromotionReport::create([
+            'user_id' => auth()->user()->id,
+            'user_promotion_id' => $id,
+            'description' => $request->description
+        ]);
+
+        return redirect()->back()->with('success', 'We have got your request. Thank you');
     }
 
 

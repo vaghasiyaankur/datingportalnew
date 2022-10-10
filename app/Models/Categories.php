@@ -7,7 +7,7 @@ use App\Models\Groups;
 use App\Models\Blogs;
 use Illuminate\Database\Eloquent\Model;
 
-class Categories extends Model
+class   Categories extends Model
 {
     protected $fillable = [
         'name'

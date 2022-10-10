@@ -91,3 +91,36 @@
         </div>
     <!-- ./Promotion Slider -->
 <!-- Developed By CBS -->
+
+<!-- Report modal For Highlight Slider -->
+@if (sizeof(auth()->user()->promotionInfo) > 0)
+@foreach (auth()->user()->promotionInfo as $promotion)
+<div class="modal" id="reportpromotionalModal{{ $promotion->id }}">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content modal-content-demo">
+            <div class="modal-header">
+                <h6 class="modal-title" style="font-weight: bold;text-transform: uppercase;">Rapport</h6><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <form method="POST" action="{{ route('promotion.report', $promotion->id) }}">
+                @csrf
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-6 col-md-12">
+                          <div class="form-group">
+                              <label for="name">Beskrivelse <span style="color:red">*</span></label>
+                               <textarea maxlength="250" value="{{old('description')}}" placeholder="Skriv noget..." class="form-control" name="description" rows="3" required></textarea>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn ripple btn-success" type="submit" style="font-weight: bold;text-transform: uppercase;">Indsend</button>
+                    <button class="btn ripple btn-danger" data-dismiss="modal" type="button" style="font-weight: bold;text-transform: uppercase;">Tæt</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@endforeach
+@endif
+<!-- Report modal For Highlight Slider -->

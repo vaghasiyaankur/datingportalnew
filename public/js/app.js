@@ -2216,6 +2216,10 @@ __webpack_require__.r(__webpack_exports__);
     Echo.join("chatroom." + this.room.id).here(function (user) {
       _this.users = user;
       _this.numberOfUsers = user.length;
+      axios.post("updateOnlineUser", {
+        online_users: _this.numberOfUsers,
+        room_id: _this.room.id
+      });
     }).joining(function (user) {
       _this.users.push(user);
 
@@ -95477,8 +95481,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! G:\Work_2020\Dating_Portalen\git\datingportalen-frontend\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! G:\Work_2020\Dating_Portalen\git\datingportalen-frontend\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /var/www/html/datingportal/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /var/www/html/datingportal/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

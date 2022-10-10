@@ -75,6 +75,41 @@ class UserController extends Controller
                         ->with('success','User created successfully');
     }
 
+    /**
+     * Add New User
+     * @params string $request->name
+     * @params string $request->email
+     * @params string $request->password
+     * 
+     * @return \Illuminate\Http\Response
+     */
+
+    public function add(Request $request)
+    {
+
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|email|unique:admins,email',
+            'password' => 'required|same:confirm-password'
+        ]);
+
+
+        $input = $request->all();
+        $input['password'] = Hash::make($input['password']);
+
+
+        $member = Admin::create($input);
+
+
+        // $user = new Admin();
+        // $user->name = $request->name;
+        // $user->email = $request->email;
+        // $user->save();
+
+        return redirect()->route('users.index')
+        ->with('success','Admin created successfully');
+    }
+
 
     /**
      * Display the specified resource.

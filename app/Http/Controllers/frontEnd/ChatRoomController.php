@@ -4,8 +4,10 @@ namespace App\Http\Controllers\frontEnd;
 
 use App\User;
 use App\Models\ChatRoom;
+use App\Models\ChatRoomOnlineCount;
 use Illuminate\Http\Request;
 use App\Events\ChatRoomEvent;
+use App\Events\UserOnline;
 use Illuminate\Support\Carbon;
 use App\Models\ChatRoomJoinUser;
 use App\Models\PortalJoinUser;
@@ -16,6 +18,7 @@ use Sabberworm\CSS\CSSList\Document;
 use App\Models\Backend\ChatRoomDetails;
 use Illuminate\Support\Facades\Storage;
 use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Facades\Broadcast;
 
 class ChatRoomController extends Controller
 {
@@ -50,6 +53,15 @@ class ChatRoomController extends Controller
         if(Auth::user()->isChatRoomUserCurrently($id)){
 
             if (! auth()->user()->isPaid()) {
+                $check = ChatRoomOnlineCount::where('chatRoomDetail_id', $id)->first();
+                if($check){
+                    $count = $check->online;
+                    if($count < 20){
+                        $chatRoom = ChatRoomDetails::find($id);
+                        return view('frontEnd.chatRoom',compact('chatRoomList','chatRoom'));
+                    }
+                }
+
                 Toastr::error('This feature is only for paid user', 'fejl');
                 return redirect('/chat-rooms')->with('error', 'This feature is only for paid user');
 
@@ -79,6 +91,22 @@ class ChatRoomController extends Controller
         ]);
 
     	broadcast(new ChatRoomEvent($chat->load('user'),$chr))->toOthers();
+
+    	return ['status' => 'success'];
+    }
+
+    public function updateOnlineUser(Request $request)
+    {
+        $chatroom = ChatRoomOnlineCount::where('chatRoomDetail_id', $request->room_id)->first();
+
+        if($chatroom){
+            $chatroom->update(['online' => $request->online_users]);
+        }else{
+            $chatroom = new ChatRoomOnlineCount();
+            $chatroom->chatRoomDetail_id = $request->room_id;
+            $chatroom->online = $request->online_users;
+            $chatroom->save();
+        }
 
     	return ['status' => 'success'];
     }

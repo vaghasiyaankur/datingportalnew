@@ -37,6 +37,9 @@
                     </div>
 
             </a>
+            <div class="text-right">
+                <a href="#" data-toggle="modal" data-target="#reportpromotionalModal{{$item->id}}"><span class="badge badge-danger" style="font-weight: bold;">Anmeld</span></a>
+            </div>
         </div>
     <!-- Paid Promo Section -->
 <!-- Developed By CBS -->

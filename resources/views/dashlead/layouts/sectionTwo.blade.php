@@ -52,7 +52,8 @@
 						      		<div class="col-9" style="text-align: left;">
 						      			<h6 style="font-weight: bold;">{!! str_limit($status->title, $limit = 65, $end = '..') !!}</h6>
 						      			<a href="{{ url('profile?user_id='.$status->user_id) }}"><span class="badge badge-primary" style="font-weight: bold;"><i class="fas fa-user-circle"></i>  {{$status->user->portalInfo->userName}}</span></a>
-						      			<a href="#" data-toggle="modal" data-target="#reportModal{{$status->id}}"><span class="badge badge-danger" style="font-weight: bold;"><i class="fas fa-flag"></i></span></a>
+						      			<a href="#" data-toggle="modal" data-target="#reportModal{{$status->id}}"><span class="badge badge-danger" style="font-weight: bold;">Anmeld</span></a>
+										  {{-- <i class="fas fa-flag"></i> --}}
 						      		</div>
 						      		<div class="col-3" style="text-align: right;">
 						      			<a href="{{ url('profile?user_id='.$status->user_id) }}">

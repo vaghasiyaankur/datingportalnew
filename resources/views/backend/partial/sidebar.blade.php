@@ -39,4 +39,9 @@
         <i class="fas fa-bullhorn"></i>
         <span>Reported Status</span></a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('reported-promotion.index') }}">
+        <i class="fas fa-bullhorn"></i>
+        <span>Reported Promotion</span></a>
+    </li>
 </ul>

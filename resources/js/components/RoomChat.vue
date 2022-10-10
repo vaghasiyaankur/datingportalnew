@@ -241,6 +241,10 @@ export default {
       .here((user) => {
         this.users = user;
         this.numberOfUsers = user.length;
+        axios.post("updateOnlineUser", {
+          online_users: this.numberOfUsers,
+          room_id: this.room.id,
+        });
       })
       .joining((user) => {
         this.users.push(user);

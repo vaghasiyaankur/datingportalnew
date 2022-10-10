@@ -44,7 +44,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'email', 'password','portalJoinUser_id','status',
+        'email', 'password','portalJoinUser_id','status','super_user','email_verified_at'
     ];
 
     protected $appends = ['userName','portalInfo','promotionInfo','profilePicture','chatSidebarColor'];

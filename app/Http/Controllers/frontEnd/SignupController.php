@@ -128,7 +128,6 @@ class SignupController extends Controller
     }
    
     public function FortStep(Request $request){
-dd('sa');
         $this->validate($request,[
             'profilePicture' => ['required'],
             'profile_detail' => ['required'],
